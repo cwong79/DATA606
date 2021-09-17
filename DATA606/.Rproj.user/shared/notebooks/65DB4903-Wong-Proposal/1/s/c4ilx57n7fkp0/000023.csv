@@ -1,0 +1,3 @@
+"0","ggplot(df, aes(x=Category, y=Total/10000) ) +"
+"0","    geom_bar(stat=""identity"") +"
+"0","    theme(axis.text.x = element_text(angle = 60, hjust = 1))"

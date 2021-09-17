@@ -1,0 +1,2 @@
+"0","m4 <- lm(runs ~ new_obs, data = mlb11)"
+"0","abline(m4)"

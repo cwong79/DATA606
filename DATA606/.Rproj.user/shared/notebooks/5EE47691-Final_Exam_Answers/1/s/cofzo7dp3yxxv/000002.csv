@@ -1,0 +1,8 @@
+"0","data1.x.mean <- mean(data1$x)"
+"0","data1.y.mean <- mean(data1$y)"
+"0","data2.x.mean <- mean(data2$x)"
+"0","data2.y.mean <- mean(data2$y)"
+"0","data3.x.mean <- mean(data3$x)"
+"0","data3.y.mean <- mean(data3$y)"
+"0","data4.x.mean <- mean(data4$x)"
+"0","data4.y.mean <- mean(data4$y)"

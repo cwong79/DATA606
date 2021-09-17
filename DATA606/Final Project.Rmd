@@ -1,0 +1,189 @@
+---
+title: "DATA 606 Data Project Proposal"
+author: "Calvin Wong"
+---
+
+
+```{r echo=FALSE}
+# load data
+library(psych)
+library(ggplot2)
+library(dplyr)
+library(knitr)
+library(gapminder)
+library(data.table)
+
+df <-  read.csv(file = "https://raw.githubusercontent.com/fivethirtyeight/data/master/college-majors/grad-students.csv", header= TRUE)
+df <- df[,c('Major_category', 'Major', 'Grad_total', 'Grad_employed', 'Grad_full_time_year_round', 'Grad_median')]
+names(df) <- c('Category', 'Major', 'Total', 'Employed', 'Fulltime', 'Median_salary')
+head(df)
+```
+
+
+### Part 1 - Introduction
+
+How monetarily viable are graduate degree types against each other? 
+
+In fall 2016, total undergraduate enrollment in degree-granting post secondary institutions was 16.9 million students, an increase of 28 percent from 2000, when enrollment was 13.2 million students. During the same period of time, some 3.0 million students were enrolled in post baccalaureate degree programs. Between 2016 and 2027, both undergraduate and post baccalaureate enrollment is projected to increase by a modest 2-3 percent.
+
+For young adults ages 25–34 who worked full time, higher educational attainment was often associated with higher median earnings. For example, in 2016 the median earnings of young adults with a master's or higher degree were $64,100, some 28 percent higher than those of young adults with a bachelor's degree ($50,000). In the same year, the median earnings of young adults with a bachelor's degree were 57 percent higher than those of young adult high school completed ($31,800). In addition, the median earnings of young adult high school completers were 26 percent higher than those of young adults who did not complete high school ($25,400). This pattern of higher earnings associated with higher levels of educational attainment also held regardless of gender as well as for racial designations. 
+
+Georgetown's 'The Economic Value of College Majors' report noted that roughly 80% of today's incoming college freshmen ultimately choose a major based on potential salary and benefits. The purpose of this analysis is to review an independent data set from the U.S. Census Bureau which provides median salary information across different work categories from 2012. This analysis will assist fellow higher education seekers which career path can yield the highest potential salary.
+
+### Part 2 - Data
+
+#### Cases 
+
+175
+
+#### Data collection 
+
+Every year, the U.S. Census Bureau contacts over 3.5 million households across the country to participate in the American Community Survey (ACS). The information that the Census Bureau collects helps to determine how more than $675 billion dollars of federal funding each year is spent on infrastructure and services. Through the ACS, data about jobs and occupations, educational attainment, veterans, whether people own or rent their home, and many other topics are available. The American Community Survey (ACS) Public Use Microdata Sample (PUMS) files are a set of untabulated records about individual people or housing units. The Census Bureau produces the PUMS files so that data users can create custom tables that are not available through pretabulated (or summary) ACS data products.
+
+#### Type of study 
+
+This is an observational study
+
+#### Data Source 
+
+This data is an excerpt from American Community Survey 2010-2012 Public Use Microdata Series produced by fivethirtyeight.com and located https://github.com/fivethirtyeight/data/blob/master/college-majors/grad-students.csv
+
+Casselman, B. (2014, September 12). The Economic Guide To Picking A College Major. Retrieved October 18, 2018, from https://fivethirtyeight.com/features/the-economic-guide-to-picking-a-college-major/
+
+#### Dependent Variable
+
+Category and it is qualitative.
+
+#### Independent Variable
+
+Major - Major type (Qualitative)
+Median_salary - Median earnings (Quantitative)
+
+### Part 3 - Exploratory data analysis
+
+Data structure
+
+```{r}
+str(df)
+```
+
+Data summary
+
+```{r}
+summary(df)
+```
+
+Distribution of Educational Category
+
+We can see which educational categories are represented by majors types. It seems that the engineering type majors are disproportionately represented.
+
+```{r}
+reorder_size <- function(x) {
+  factor(x, levels = names(sort(table(x), decreasing = TRUE)))
+}
+
+ggplot(df, aes(x=reorder_size(Category))) + 
+  ggtitle("Educational Category") +
+  geom_bar(fill = "white", colour = "red") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        axis.title.x=element_blank(),
+        plot.title = element_text(color="black", size=14,hjust = 0.5))
+```
+
+Distribution of Salary
+
+The distribution of salary shows a right-skewed distribution. This makes sense because the higher a salary level gets the less amount of job opportunities exists.
+
+```{r}
+ggplot(df, aes(x=Median_salary)) + 
+  ggtitle("Salary") +
+  geom_histogram(fill = "white", colour = "red",binwidth = 10000) +
+  theme(axis.title.x=element_blank(), 
+        plot.title = element_text(color="black", size=14,hjust = 0.5))
+```
+
+We can see which educational categories have the highest median salaries. It seems that STEM-based and business educational categories have the highest median salaries. Based on the study, The Economic Value of College Majors by Georgetown University, STEM and business majors not only have the highest wages, they experience the largest wage growth over the course of their careers. The fact is that college majors play such an enormous role in determining college graduates’ wages and their career trajectory. 
+
+```{r}
+df_mean <- df %>% 
+  group_by(Category) %>% 
+  summarise(Median_salary = mean(as.numeric(Median_salary)))
+
+ggplot(df_mean, aes(x= reorder(Category, -Median_salary), y=Median_salary)) +
+  ggtitle("Category Mean Salary") +
+  geom_bar(stat = "identity", fill = "white", colour = "red") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        axis.title.x = element_blank(),
+        plot.title = element_text(color="black", size=14,hjust = 0.5)) +
+        labs(y = "Mean Salary")
+```
+
+
+### Part 4 - Inference
+
+This study will investigate if educational categories is independent of salaries. As stated in the Exploratory section, we see category mean salaries shows that the STEM majors have more earning potential than other majors types, such as the Arts. A one-way analysis of variance (ANOVA) which is used to determine whether there are any statistically significant differences between the means of three or more independent (unrelated) groups. The second is through individual adjusted p-values which is a type of inferential statistic which is used to determine if there is a significant difference between the means of two groups which may be related in median salaries. Since the salary data has a right-skew across all categorical levels, adding these test will increase the robustness of this analysis.
+
+#### ANOVA
+
+There are three conditions we must check for an ANOVA analysis: all observations must be independent, the data in each group must be nearly normal, and the variance within each group must be approximately equal.
+
+We believe all conditions are met because the data from each category is independant (it is unlikely salaries from 1 major has any influences on salary for another). We also estimate that while the variability and distributions are not ideal, they should also be adequate for conducting a simple ANOVA test.
+
+Hypothesis test
+
+H0: Category salaries are not different from each other 
+
+HA: Category salaries are different from each other
+
+Here I plotted out the variability of the dataset by category.
+
+```{r}
+cat_info <- summarise(group_by(df, Category), mean = round(mean(Median_salary),0), variance = round(var(Median_salary),0), stdev = round(sd(Median_salary), 0))
+knitr::kable(cat_info);
+```
+
+
+```{r}
+ggplot(df, aes(factor(Category), Median_salary)) + 
+  geom_boxplot(aes(fill=Category)) + 
+  xlab("") +
+  ylab("Median Salary") +
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())
+```
+
+We can see from our test that the p-value is extremely low at <2e-16. This causes us to reject H0 and conclude that there are differences between educationcal category salaries. However, p-value tests do not paint a clear picture especially considering a multiple variable hypothesis like this one. We will also evaluate our hypothesis through a Tukey HSD Test.
+
+```{r}
+anova <- aov(df$Median_salary ~ df$Category)
+summary(anova)
+plot(anova)
+```
+
+John Tukey came up with the test that bears his name when he realized the mathematical pitfalls of trying to use independent P-values to determine the utility of a multiple-variables hypothesis as a whole. At the time, t-tests were being applied to three or more groups, and he considered this dishonest – hence "honestly significant difference."
+
+What his test does is compare the differences between means of values rather than comparing pairs of values. The value of the Tukey test is given by taking the absolute value of the difference between pairs of means and dividing it by the standard error of the mean (SE) as determined by a one-way ANOVA test. The SE is in turn the square root of (variance divided by sample size).
+
+The Tukey test is difficult to decipher due to testing 16 independent categories against each other. For example, this output indicates that the p-adjusted differences when small, shows that there is a significant difference of salary between those two categories. So, Business-Arts with a p-adjusted value of 0.0000800 indicates a significant difference in salary, wherelse, Arts-Interdisciplinary with a p-adjusted value of 1.0 indicates no significant difference.
+
+```{r}
+tukey <- TukeyHSD(anova, ordered=TRUE)
+tukey
+```
+
+### Part 5 - Conclusion
+
+Our study of the American Community Survey 2010-2012 revealed how salary is distributed among educational categories. We looked at subgroups representing the categories through major types and the median salaries calculated. Our analysis included an ANOVA and Tukey testing, we were able to determine if educational categories yielded different salary results. 
+
+We can conclude this is true. Not all educational categories are created equal at least from the salary standpoint and is an important consideration for incoming freshmen. However, the most lucrative majors are not necessarily the most common. The economic value of majors plays a role in students’ choice of major, but students’ abilities, academic preparation, interests, and values are also important considerations.
+
+### Future analysis
+
+Measuring trends is important to determine if educational categories shift in median salaries over time. We would also look at the influences of higher education (i.e Masters, PhD), towards the scale of salary increases within categories.
+
+### References
+
+https://nces.ed.gov/programs/coe/indicator_cha.asp
+
+https://cew.georgetown.edu/cew-reports/valueofcollegemajors/

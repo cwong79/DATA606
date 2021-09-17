@@ -1,0 +1,1 @@
+"0","plot(mlb11$runs ~ mlb11$at_bats)"

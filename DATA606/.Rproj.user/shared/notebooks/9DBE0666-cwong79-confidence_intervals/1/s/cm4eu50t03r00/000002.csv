@@ -1,0 +1,5 @@
+"0","for(i in 1:50){"
+"0","  samp <- sample(population, n) # obtain a sample of size n = 60 from the population"
+"0","  samp_mean[i] <- mean(samp)    # save sample mean in ith element of samp_mean"
+"0","  samp_sd[i] <- sd(samp)        # save sample sd in ith element of samp_sd"
+"0","}"

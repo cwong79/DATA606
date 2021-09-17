@@ -1,0 +1,8 @@
+"0","sample_means10 <- rep(NA, 5000)"
+"0","sample_means100 <- rep(NA, 5000)"
+"0","for(i in 1:5000){"
+"0","  samp <- sample(area, 10)"
+"0","  sample_means10[i] <- mean(samp)"
+"0","  samp <- sample(area, 100)"
+"0","  sample_means100[i] <- mean(samp)"
+"0","}"

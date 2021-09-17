@@ -1,0 +1,8 @@
+"0","data1.x.sd <- sd(data1$x)"
+"0","data1.y.sd <- sd(data1$y)"
+"0","data2.x.sd <- sd(data2$x)"
+"0","data2.y.sd <- sd(data2$y)"
+"0","data3.x.sd <- sd(data3$x)"
+"0","data3.y.sd <- sd(data3$y)"
+"0","data4.x.sd <- sd(data4$x)"
+"0","data4.y.sd <- sd(data4$y)"

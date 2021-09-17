@@ -1,0 +1,2 @@
+"0","lower_vector <- samp_mean - 1.96 * samp_sd / sqrt(n) "
+"0","upper_vector <- samp_mean + 1.96 * samp_sd / sqrt(n)"

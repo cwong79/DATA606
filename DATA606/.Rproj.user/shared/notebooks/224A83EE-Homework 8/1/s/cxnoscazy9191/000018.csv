@@ -1,0 +1,4 @@
+"0","temps <- seq(from = 51, to = 81)"
+"0","dmg_prob1 <- exp(11.663-(0.2162*temps))/(1+exp(11.663-(0.2162*temps)))"
+"0","dtemp <- as.data.frame(cbind(temps, dmg_prob1))"
+"0","plot(temps, dmg_prob1, xlab=""Temperature"",ylab=""Probability"")"

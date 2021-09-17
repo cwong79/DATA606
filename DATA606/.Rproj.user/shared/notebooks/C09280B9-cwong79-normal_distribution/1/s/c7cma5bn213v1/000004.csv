@@ -1,0 +1,3 @@
+"0","x <- 140:190"
+"0","y <- dnorm(x = x, mean = fhgtmean, sd = fhgtsd)"
+"0","lines(x = x, y = y, col = ""blue"")"

@@ -1,0 +1,1 @@
+"0","plot(mlb11$runs ~ mlb11$new_obs)"

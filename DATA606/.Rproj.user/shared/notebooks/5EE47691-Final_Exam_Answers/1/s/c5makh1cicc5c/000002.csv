@@ -1,0 +1,4 @@
+"0","data1.correlation <- cor(data1$x, data1$y)"
+"0","data2.correlation <- cor(data2$x, data2$y)"
+"0","data3.correlation <- cor(data3$x, data3$y)"
+"0","data4.correlation <- cor(data4$x, data4$y)"

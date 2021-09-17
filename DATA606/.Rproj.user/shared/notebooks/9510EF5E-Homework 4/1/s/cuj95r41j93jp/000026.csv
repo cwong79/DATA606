@@ -1,0 +1,2 @@
+"0","s <- seq(6000,12000,0.01)"
+"0","plot(s, dnorm(s,9000, 1000), type=""l"", ylim = c(0,0.002), ylab = ""Probability"", xlab = ""Hours"")"

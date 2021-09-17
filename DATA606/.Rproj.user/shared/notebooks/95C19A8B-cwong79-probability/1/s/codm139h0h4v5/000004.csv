@@ -1,0 +1,2 @@
+"0","kobe_streak <- calc_streak(kobe$basket)"
+"0","barplot(table(kobe_streak))"

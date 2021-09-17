@@ -1,0 +1,1 @@
+"0","normalPlot(mean = 0, sd = 1, bounds = c(1 - round(pnorm(.5, mean = 0, sd = 1),digits=3), round(pnorm(.5, mean = 0, sd = 1),digits=3)))"

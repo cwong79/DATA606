@@ -1,0 +1,5 @@
+"0","# Create an ephemeral in-memory RSQLite database"
+"0","con <- dbConnect(RSQLite::SQLite(), "":memory:"" ,overwrite =TRUE )"
+"0","dbListTables(con)"
+"1","character(0)
+"

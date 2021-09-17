@@ -1,0 +1,2 @@
+"0","plot(abs(m_bty_gen$residuals) ~ m_bty_gen$fitted.values,"
+"0","     xlab = ""Fitted Values"", ylab = ""Absolute Value of Residuals"")"

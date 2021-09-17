@@ -1,0 +1,2 @@
+"0","population <- ames$Gr.Liv.Area"
+"0","samp <- sample(population, 60)"

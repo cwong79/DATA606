@@ -1,0 +1,2 @@
+"0","sim_streak <- calc_streak(sim_basket)"
+"0","barplot(table(sim_streak))"

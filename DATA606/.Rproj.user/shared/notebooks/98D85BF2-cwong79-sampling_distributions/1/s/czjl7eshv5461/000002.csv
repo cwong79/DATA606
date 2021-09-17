@@ -1,0 +1,2 @@
+"0","area <- ames$Gr.Liv.Area"
+"0","price <- ames$SalePrice"

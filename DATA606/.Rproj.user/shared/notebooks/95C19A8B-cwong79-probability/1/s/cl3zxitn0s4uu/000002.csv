@@ -1,0 +1,6 @@
+"0","outcomes <- c(""heads"", ""tails"")"
+"0","sample(outcomes, size = 1, replace = TRUE)"
+"1","[1]"
+"1"," ""heads"""
+"1","
+"

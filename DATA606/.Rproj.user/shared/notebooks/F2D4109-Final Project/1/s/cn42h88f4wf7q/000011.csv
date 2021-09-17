@@ -1,0 +1,7 @@
+"0","ggplot(df, aes(factor(Category), Median_salary)) + "
+"0","  geom_boxplot(aes(fill=Category)) + "
+"0","  xlab("""") +"
+"0","  ylab(""Median Salary"") +"
+"0","  theme(axis.title.x=element_blank(),"
+"0","        axis.text.x=element_blank(),"
+"0","        axis.ticks.x=element_blank())"

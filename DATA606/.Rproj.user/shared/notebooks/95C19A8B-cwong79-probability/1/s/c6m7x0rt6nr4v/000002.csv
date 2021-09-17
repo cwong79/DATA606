@@ -1,0 +1,2 @@
+"0","outcomes <- c(""H"", ""M"")"
+"0","sim_basket <- sample(outcomes, size = 133, replace = TRUE, prob = c(0.45, 0.55))"

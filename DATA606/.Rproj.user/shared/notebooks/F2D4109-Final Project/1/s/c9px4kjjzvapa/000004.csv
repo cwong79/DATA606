@@ -1,0 +1,5 @@
+"0","ggplot(df, aes(x=Median_salary)) + "
+"0","  ggtitle(""Salary"") +"
+"0","  geom_histogram(fill = ""white"", colour = ""red"",binwidth = 10000) +"
+"0","  theme(axis.title.x=element_blank(), "
+"0","        plot.title = element_text(color=""black"", size=14,hjust = 0.5))"

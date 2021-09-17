@@ -1,0 +1,6 @@
+"0","sample_means50 <- rep(NA, 5000)"
+"0","for(i in 1:5000){"
+"0","   samp <- sample(area, 50)"
+"0","   sample_means50[i] <- mean(samp)"
+"0","   }"
+"0","hist(sample_means50)"

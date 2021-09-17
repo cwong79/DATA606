@@ -1,0 +1,157 @@
+---
+title: "DATA 606 - Homework 5"
+author: "Calvin Wong"
+date: "10/24/2018"
+output: html_document
+---
+
+5.6
+
+Working backwards, Part II. A 90% confidence interval for a population mean is (65, 77). The population distribution is approximately normal and the population standard deviation is unknown. This confidence interval is based on a simple random sample of 25 observations. Calculate the sample mean, the margin of error, and the sample standard deviation.
+
+```{r}
+sample_mean <- (65 + 77)/2
+
+margin_error <- (77 - 65)/2
+
+t_score <- qt(.05, 24)
+
+sample_error <- (margin_error/t_score) * sqrt(25)
+
+print(paste("sample_mean is ", sample_mean))
+print(paste("margin_error is ", margin_error))
+print(paste("sample_error is ", sample_error))
+```
+
+5.14 
+
+SAT scores. SAT scores of students at an Ivy League college are distributed with a standard deviation of 250 points. Two statistics students, Raina and Luke, want to estimate the average SAT score of students at this college as part of a class project. They want their margin of error to be no more than 25 points.
+(a) Raina wants to use a 90% confidence interval. How large a sample should she collect?
+
+273
+
+```{r}
+z_score <- 1.65
+ME <- 25
+sd <- 250
+
+n <- ((z_score * sd) / ME) ^2
+n
+
+```
+
+(b) Luke wants to use a 99% confidence interval. Without calculating the actual sample size, determine whether his sample should be larger or smaller than Raina’s, and explain your reasoning.
+
+It will be larger because of the larger z_score. While the margin of error remains the same.
+
+(c) Calculate the minimum required sample size for Luke.
+
+664
+
+```{r}
+z_score <- 2.575
+ME <- 25
+sd <- 250
+
+n <- ((z_score * sd) / ME) ^2
+n
+```
+
+5.20
+
+High School and Beyond, Part I. The National Center of Education Statistics conducted a survey of high school seniors, collecting test data on reading, writing, and several other subjects. Here we examine a simple random sample of 200 students from this survey. Side-by-side box plots of reading and writing scores as well as a histogram of the differences in scores are shown below.
+
+(a) Is there a clear difference in the average reading and writing scores?
+
+We can see that there are differences although not definitive. The median's are different and distribution of read is larger.
+
+(b) Are the reading and writing scores of each student independent of each other?
+
+The reading and writing scores are independent of each other.
+
+(c) Create hypotheses appropriate for the following research question: is there an evident difference in the average scores of students in the reading and writing exam?
+
+H0: There is no difference in average scores
+HA: There is a difference in average scores
+
+(d) Check the conditions required to complete this test.
+
+The observations are independent and the distributions are normal with no skew.
+
+(e) The average observed difference in scores is ¯xread−write = −0.545, and the standard deviation of the differences is 8.887 points. Do these data provide convincing evidence of a difference between the average scores on the two exams?
+
+Since the p-value is higher than 0.05, we maintain the null hypotheses. The data does not provide convincing evidence of a difference between the average scores on the two exams.
+
+```{r}
+mu <- -.545
+df <- n-1
+sd <- 8.887
+n <- 200
+
+SE <- sd/sqrt(n)
+
+t <- (mu-0)/SE
+
+p <- pt(t, df)
+p
+```
+
+(f) What type of error might we have made? Explain what the error means in the context of the application.
+
+We may have made a type II error because we rejected the alternative hypothesis. In this context, we may have deducted that there is no difference between the average scores on the two exams.
+
+(g) Based on the results of this hypothesis test, would you expect a confidence interval for the
+average difference between the reading and writing scores to include 0? Explain your reasoning.
+
+I do expect a confidence interval for the average difference between the reading and writing scores to include 0. This is because the null hypothesis included 0.
+
+5.32
+
+Fuel efficiency of manual and automatic cars, Part I. Each year the US Environmental Protection Agency (EPA) releases fuel economy data on cars manufactured in that year. Below are summary statistics on fuel efficiency (in miles/gallon) from random samples of cars with manual and automatic transmissions manufactured in 2012. Do these data provide strong evidence of a difference between the average fuel efficiency of cars with manual and automatic transmissions in terms of their average city mileage? Assume that conditions for inference are satisfied.
+
+HO: There is no difference between the average fuel efficiency of cars with manual and automatic transmissions
+HA: There is a difference between the average fuel efficiency of cars with manual and automatic transmissions
+
+Since p−value, 0.0029 < 0.05, we reject H0. There is a difference between the average fuel efficiency of cars with manual and automatic transmissions.  
+
+```{r}
+a_mean <- 16.12
+a_sd <- 3.58
+n <- 26
+m_mean <- 19.85
+m_sd <- 4.51
+df <- 25
+
+mean_diff <- a_mean - m_mean
+a_SE <- a_sd/sqrt(n)
+m_SE <- m_sd/sqrt(n)
+SE <- sqrt((a_SE^2)+(m_SE^2))
+t <- (mean_diff-0)/SE
+p <- 2 * pt(t, df)
+p
+```
+
+5.48
+
+Work hours and education. The General Social Survey collects data on demographics, education, and work, among many other characteristics of US residents. Using ANOVA, we can consider educational attainment levels for all 1,172 respondents at once. Below are the distributions of hours worked by educational attainment and relevant summary statistics that will be helpful in carrying out this analysis.
+
+(a) Write hypotheses for evaluating whether the average number of hours worked varies across the five groups.
+
+H0: Average number of hours worked is the same for all groups
+HA: Average number of hours worked varies across the five groups
+
+(b) Check conditions and describe any assumptions you must make to proceed with the test.
+
+We should check conditions. If we look back to the earlier exercise, we will see that the subject were randomized, so independence is satisfied. There are some minor concerns about skew, especially with the fourth group, though this may be acceptable. The standard deviations across the groups are reasonably similar. 
+
+(c) Below is part of the output associated with this test. Fill in the empty cells.
+
+|           | Df   | Sum Sq  | Mean Sq | F value | Pr(>F) |
+|-----------|------|---------|---------|---------|--------|
+| degree    | 4    | 2,006   | 501.54  | 2.18    | 0.0682 |
+| Residuals | 1167 | 267,382 | 229.12  |         |        |
+| Total     | 1171 | 269,388 |         |         |        |
+
+(d) What is the conclusion of the test?
+
+Since the p-value is less than 0.05, reject H0. The data provide convincing evidence of the average number of hours worked varies across the five groups.

@@ -1,0 +1,1 @@
+"0","sim_norm <- rnorm(n = length(fdims$hgt), mean = fhgtmean, sd = fhgtsd)"

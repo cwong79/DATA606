@@ -1,0 +1,4 @@
+"0","dbListFields(con, ""MCR_Target_Analysis_Tab"")"
+"2","Error in result_create(conn@ptr, statement) : 
+  no such table: MCR_Target_Analysis_Tab
+"

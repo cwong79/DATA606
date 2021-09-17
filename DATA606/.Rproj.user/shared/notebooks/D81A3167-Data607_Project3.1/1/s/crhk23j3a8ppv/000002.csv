@@ -1,0 +1,4 @@
+"0","df <-  read.csv(file = ""kaggle-survey-2017/multipleChoiceResponses.csv"", header= TRUE)"
+"2","cannot open file 'kaggle-survey-2017/multipleChoiceResponses.csv': No such file or directory"
+"2","Error in file(file, ""rt"") : cannot open the connection
+"

@@ -1,0 +1,44 @@
+---
+title: "DATA 606 - Assignment 1"
+author: "Calvin Wong"
+date: "8/28/2018"
+output: html_document
+---
+
+1.8
+a)
+b)
+c)
+
+1.10
+a)
+b)
+
+1.28
+a)
+b)
+
+1.36
+a)
+b)
+c)
+d)
+e)
+f)
+
+1.48
+
+
+1.50
+
+1.56
+a)
+b)
+c)
+d)
+
+1.70
+a)
+b)
+c)
+d)

@@ -1,0 +1,1 @@
+"0","filter(temp, record_max_temp > 103)"

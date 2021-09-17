@@ -1,0 +1,1 @@
+"0","ggplot(df, aes(x=Median_salary)) + geom_histogram(binwidth = 5000)"

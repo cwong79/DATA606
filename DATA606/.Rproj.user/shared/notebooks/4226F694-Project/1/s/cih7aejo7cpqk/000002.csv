@@ -1,0 +1,15 @@
+"0","library(psych)"
+"0","library(ggplot2)"
+"2","
+Attaching package: ‘ggplot2’
+
+"
+"2","The following objects are masked from ‘package:psych’:
+
+    %+%, alpha
+
+"
+"0","df <-  read.csv(file = ""https://raw.githubusercontent.com/fivethirtyeight/data/master/college-majors/grad-students.csv"", header= TRUE)"
+"0","df <- df[,c('Major_category', 'Major', 'Grad_total', 'Grad_employed', 'Grad_full_time_year_round', 'Grad_median')]"
+"0","names(df) <- c('Category', 'Major', 'Total', 'Employed', 'Fulltime', 'Median_salary')"
+"0","head(df)"

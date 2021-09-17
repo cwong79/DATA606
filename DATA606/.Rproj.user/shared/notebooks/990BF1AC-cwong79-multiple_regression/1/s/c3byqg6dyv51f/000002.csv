@@ -1,0 +1,2 @@
+"0","m_bty <- lm(evals$score ~ evals$bty_avg)"
+"0","plot(jitter(evals$score) ~ evals$bty_avg)"

@@ -1,0 +1,6 @@
+"0","sample_means150 <- rep(NA, 5000)"
+"0","for(i in 1:5000){"
+"0","   samp <- sample(price, 150)"
+"0","   sample_means150[i] <- mean(samp)"
+"0","   }"
+"0","hist(sample_means150, breaks = 20)"

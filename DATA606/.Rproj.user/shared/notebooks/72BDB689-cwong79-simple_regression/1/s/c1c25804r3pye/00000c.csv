@@ -1,0 +1,2 @@
+"0","m3 <- lm(runs ~ bat_avg, data = mlb11)"
+"0","abline(m3)"

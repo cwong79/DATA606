@@ -1,0 +1,1 @@
+"0","sim_fair_coin <- sample(outcomes, size = 100, replace = TRUE)"

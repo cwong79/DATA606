@@ -1,0 +1,8 @@
+"0","data1.x.median <- median(data1$x)"
+"0","data1.y.median <- median(data1$y)"
+"0","data2.x.median <- median(data2$x)"
+"0","data2.y.median <- median(data2$y)"
+"0","data3.x.median <- median(data3$x)"
+"0","data3.y.median <- median(data3$y)"
+"0","data4.x.median <- median(data4$x)"
+"0","data4.y.median <- median(data4$y)"

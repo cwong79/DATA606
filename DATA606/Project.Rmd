@@ -1,0 +1,94 @@
+---
+title: DATA 606 Data Project Proposal
+author: "Calvin Wong"
+date: "10/14/2018"
+output: html_document
+---
+
+### Data Preparation
+
+```{r}
+library(psych)
+library(ggplot2)
+
+df <-  read.csv(file = "https://raw.githubusercontent.com/fivethirtyeight/data/master/college-majors/grad-students.csv", header= TRUE)
+df <- df[,c('Major_category', 'Major', 'Grad_total', 'Grad_employed', 'Grad_full_time_year_round', 'Grad_median')]
+names(df) <- c('Category', 'Major', 'Total', 'Employed', 'Fulltime', 'Median_salary')
+head(df)
+```
+
+### Research question 
+
+**You should phrase your research question in a way that matches up with the scope of inference your dataset allows for.**
+
+How monetarily viable are graduate degree types against each other?
+
+### Cases 
+
+**What are the cases, and how many are there?**
+
+175
+
+### Data collection 
+
+**Describe the method of data collection.**
+
+Every year, the U.S. Census Bureau contacts over 3.5 million households across the country to participate in the American Community Survey (ACS). The information that the Census Bureau collects helps to determine how more than $675 billion dollars of federal funding each year is spent on infrastructure and services. Through the ACS, data about jobs and occupations, educational attainment, veterans, whether people own or rent their home, and many other topics are available. The American Community Survey (ACS) Public Use Microdata Sample (PUMS) files are a set of untabulated records about individual people or housing units. The Census Bureau produces the PUMS files so that data users can create custom tables that are not available through pretabulated (or summary) ACS data products.
+
+### Type of study 
+
+**What type of study is this (observational/experiment)?**
+
+Observational
+
+### Data Source 
+
+**If you collected the data, state self-collected. If not, provide a citation/link.**
+
+This data is an excerpt from American Community Survey 2010-2012 Public Use Microdata Series produced by fivethirtyeight.com and located https://github.com/fivethirtyeight/data/blob/master/college-majors/grad-students.csv
+
+Casselman, B. (2014, September 12). The Economic Guide To Picking A College Major. Retrieved October 18, 2018, from https://fivethirtyeight.com/features/the-economic-guide-to-picking-a-college-major/
+
+### Dependent Variable
+
+**What is the response variable? Is it quantitative or qualitative?**
+
+Category and it is qualitative.
+
+### Independent Variable
+
+**You should have two independent variables, one quantitative and one qualitative.**
+
+Major - Major type (Qualitative)
+Grad_median - Median earnings (Quantitative)
+
+
+### Relevant summary statistics 
+
+**Provide summary statistics for each the variables. Also include appropriate visualizations related to your research question (e.g. scatter plot, boxplots, etc). This step requires the use of R, hence a code chunk is provided below. Insert more code chunks as needed.**
+
+
+```{r}
+describe(df$Median_salary)
+```
+
+```{r}
+describe(df$Employed)
+```
+
+
+```{r}
+as.data.frame(table(df$Category))
+```
+
+```{r}
+ggplot(df, aes(x=Median_salary)) + geom_histogram(binwidth = 5000)
+```
+
+```{r}
+ggplot(df, aes(x=Category, y=Total/10000) ) +
+    geom_bar(stat="identity") +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1))
+```
+
+

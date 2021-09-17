@@ -1,0 +1,79 @@
+---
+title: "DATA 606 - Homework 1"
+author: "Calvin Wong"
+date: "8/28/2018"
+output: html_document
+---
+
+1.8
+a) Each row represents a case
+b) 1691
+c) sex - categorical(nominal), age - numerical(continuous), marital - categorical(nominal), grossIncome - categorical(ordinal), smoke - categorical(ordinal), amtWeekends - numerical(discrete), amtWeekdays - numerical(discrete)
+
+1.10
+a) Population - All children between ages 5 and 15, Sample - 160 
+b) No, the results cannot be generalized to the population. I believe the sample size is too small. The findings should not be used to make causal relationships, in this instance, confounding variables may skew results. The nature of the data guarantees that not all confounding variables can be identified.
+
+1.28
+a) No, we cannot conclude that smoking causes dementia later in life. This is because the study is based on observations rather than experiments. As implied in section 1.4, making causal conclusions on observational data is not recommended. Moreover, there could be skewing factor in play because participants volunteered rather than selected on random.
+b) My friend is making an assumption because the study was based on observations. He is making a causal conclusion based on a study using observational data. The article has not identified any confounding variables and drawing a conclusion should not be done.
+
+1.36
+a) Prospective study
+b) Treatment group - exercise twice a week, Control group - No exercise
+c) Yes,the blocks are 18-30, 31-40, 41-55 year olds
+d) No
+e) This randomized experiment can show a causal connection between exercise and mental health. However, having a large enough sample size would determine if the conclusions can be generalized to a population.
+f) I would not have any reservations if the study provided insights which could better serve an entire population.
+
+1.48
+```{r}
+scores <- c(57, 66, 69, 71, 72, 73, 74, 77, 78, 78, 79, 79, 81, 81, 82, 83, 83, 88, 89, 94)
+boxplot(scores,main="Final Scores",horizontal=TRUE,col="grey",axes=FALSE)
+text(x = boxplot.stats(scores)$stats, labels = boxplot.stats(scores)$stats, y = 1.3)
+```
+
+1.50
+a) - (2) Symmetric, Unimodal
+b) - (3) Symmetric, Multimodal
+c) - (1) Right skewed, Unimodal
+
+1.56 
+(a) Housing prices in a country where 25% of the houses cost below $350,000, 50% of the houses cost below $450,000, 75% of the houses cost below $1,000,000 and there are a meaningful number of houses that cost more than $6,000,000.
+Right skewed. Median because of the meaningful number of houses that costs more than $6M may provide an inflated mean. IQR as it robust against outliers.
+
+(b) Housing prices in a country where 25% of the houses cost below $300,000, 50% of the houses cost below $600,000, 75% of the houses cost below $900,000 and very few houses that cost more than $1,200,000.
+Symmetric. Mean and standard deviation as it uses all observations in computation. Since this dataset is evenly disbursed, SD is preferred over IQR.
+
+(c) Number of alcoholic drinks consumed by college students in a given week. Assume that most of these students don’t drink since they are under 21 years old, and only a few drink excessively.
+Right skewed. Median and IQR since the data is heavily skewed.
+
+(d) Annual salaries of the employees at a Fortune 500 company where only a few high level executives earn much higher salaries than the all other employees.
+Left skewed as most employees earn less than median. I would use IQR as it removes outliers as high level executives typically earn multiple times the median earner.
+
+1.70 
+```{r}
+library(openintro)
+data("heartTr")
+```
+
+(a) Based on the mosaic plot, is survival independent of whether or not the patient got a transplant? Explain your reasoning.
+Based on the mosaic plot, survival is dependent on if patient received a transplant. This is because treated patients have a higher likelihood of survival. 13% survived in the control group versus 34% in the treated group.
+
+(b) What do the box plots below suggest about the efficacy (effectiveness) of the heart transplant treatment.
+Treated patients have a higher rate of survival time.
+
+(c) What proportion of patients in the treatment group and what proportion of patients in the control group died?
+30/34 in control group died and 45/69 in the treatment group died
+
+(d) One approach for investigating whether or not the treatment is effective is to use a randomization technique.
+i. What are the claims being tested?
+H0 - The variables transplant and survival are independent.They have no relationship, and the observed difference between survival is due to chance.
+HA - The variable transplant and survival are not independent. The observed difference in survival is not due to chance.
+
+ii. The paragraph below describes the set up for such approach, if we were to do it without using statistical software. Fill in the blanks with a number or phrase, whichever is appropriate.
+
+We write alive on 28 cards representing patients who were alive at the end of the study, and dead on 79 cards representing patients who were not. Then, we shuffe these cards and split them into two groups: one group of size 69 representing treatment, and another group of size 34 representing control. We calculate the difference between the proportion of dead cards in the treatment and control groups (treatment - control) and record this value. We repeat this 100 times to build a distribution centered at 0. Lastly, we calculate the fraction of simulations where the simulated differences in proportions are 0.2302. If this fraction is low, we conclude that it is unlikely to have observed such an outcome by chance and that the null hypothesis should be rejected in favor of the alternative.
+
+iii. What do the simulation results shown below suggest about the effectiveness of the transplant program?
+The distribution of simulation differences are centered around 0. It appears that seeing a difference of at least 23.02% due to chance would never happen. I conclude that the results does not provide strong evidence against the independence model. Therefore, I reject the null hypothesis in favor of the alternative. I conclude that the data provide strong evidence of high survival rates with treatment.

@@ -1,0 +1,22 @@
+"0","# load data"
+"0","library(psych)"
+"0","library(ggplot2)"
+"0","library(dplyr)"
+"0","library(knitr)"
+"0","library(gapminder)"
+"0","library(data.table)"
+"2","data.table 1.11.8  Latest news: r-datatable.com
+"
+"2","
+Attaching package: ‘data.table’
+
+"
+"2","The following objects are masked from ‘package:dplyr’:
+
+    between, first, last
+
+"
+"0","df <-  read.csv(file = ""https://raw.githubusercontent.com/fivethirtyeight/data/master/college-majors/grad-students.csv"", header= TRUE)"
+"0","df <- df[,c('Major_category', 'Major', 'Grad_total', 'Grad_employed', 'Grad_full_time_year_round', 'Grad_median')]"
+"0","names(df) <- c('Category', 'Major', 'Total', 'Employed', 'Fulltime', 'Median_salary')"
+"0","head(df)"
